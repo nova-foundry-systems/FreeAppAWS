@@ -57,7 +57,7 @@ export default function ProfileSetupForm({ user, onComplete }) {
         />
       </label>
       {error ? <p className="auth-error">{error}</p> : null}
-      <button type="submit" className="counter auth-btn" disabled={submitting}>
+      <button type="submit" className="auth-btn" disabled={submitting}>
         {submitting ? 'Saving…' : 'Complete setup'}
       </button>
     </form>

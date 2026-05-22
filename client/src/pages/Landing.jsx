@@ -1,13 +1,8 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import reactLogo from '../assets/react.svg'
-import viteLogo from '../assets/vite.svg'
-import heroImg from '../assets/hero.png'
 import { useAuth } from '../auth/AuthContext'
 import '../App.css'
 
 function Landing() {
-  const [count, setCount] = useState(0)
   const { user, appLoading } = useAuth()
 
   return (
@@ -25,112 +20,37 @@ function Landing() {
           ) : null}
         </nav>
       </header>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
+
+      <main className="landing">
+        <h1>FreeAppAWS</h1>
+        <p className="landing-lead">
+          A reference full-stack app on AWS: React SPA, Cognito authentication, and
+          an Express API on Lambda with DynamoDB, all defined and deployed with CDK.
+        </p>
+
+        <section className="landing-about">
+          <h2>What this repo demonstrates</h2>
+          <ul>
+            <li>
+              <strong>Client</strong> — Vite + React on S3 and CloudFront with hosted
+              UI OAuth and email/password sign-in
+            </li>
+            <li>
+              <strong>API</strong> — JWT-protected user profiles via API Gateway and
+              Lambda
+            </li>
+            <li>
+              <strong>Infrastructure</strong> — CDK stacks for the client, Cognito
+              user pool, database, and API
+            </li>
+          </ul>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            Sign in to create or view your profile. Local development uses{' '}
+            <code>client/.env</code> with values from CDK stack outputs; see the
+            repository README for setup steps.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+        </section>
+      </main>
     </>
   )
 }

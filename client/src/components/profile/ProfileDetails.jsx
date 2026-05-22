@@ -8,7 +8,7 @@ export default function ProfileDetails({ firstName, lastName, onSignOut }) {
         {firstName} {lastName}
       </p>
       <div className="auth-actions">
-        <button type="button" className="counter auth-btn" onClick={onSignOut}>
+        <button type="button" className="auth-btn" onClick={onSignOut}>
           Sign out
         </button>
       </div>

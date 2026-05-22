@@ -148,7 +148,7 @@ export default function LoginForm() {
             />
           </label>
           {error ? <p className="auth-error">{error}</p> : null}
-          <button type="submit" className="counter auth-btn login-submit" disabled={submitting}>
+          <button type="submit" className="auth-btn login-submit" disabled={submitting}>
             {submitting ? 'Signing in…' : 'Sign in'}
           </button>
           <p className="login-switch">
@@ -198,7 +198,7 @@ export default function LoginForm() {
             />
           </label>
           {error ? <p className="auth-error">{error}</p> : null}
-          <button type="submit" className="counter auth-btn login-submit" disabled={submitting}>
+          <button type="submit" className="auth-btn login-submit" disabled={submitting}>
             {submitting ? 'Creating account…' : 'Create account'}
           </button>
           <p className="login-switch">
@@ -237,7 +237,7 @@ export default function LoginForm() {
           </label>
           {message ? <p className="login-message">{message}</p> : null}
           {error ? <p className="auth-error">{error}</p> : null}
-          <button type="submit" className="counter auth-btn login-submit" disabled={submitting}>
+          <button type="submit" className="auth-btn login-submit" disabled={submitting}>
             {submitting ? 'Confirming…' : 'Confirm and sign in'}
           </button>
           <p className="login-switch">
