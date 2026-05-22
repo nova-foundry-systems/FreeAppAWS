@@ -56,3 +56,8 @@ client/          # React SPA
 infra/           # AWS CDK app
 lambda/express-api/  # Lambda handler + Express app
 ```
+
+## App Personalization
+In VSCode (or Cursor), find all references of FreeApp and replace with your app's name.
+
+Then find the S3 bucket name (free-app-client-bucket) and replace free-app with your app's name (must be LOWERCASE).
