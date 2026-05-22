@@ -7,7 +7,14 @@ import {
   useState,
 } from 'react'
 import { ApiError, apiFetch, isApiConfigured } from '../api/client'
+import {
+  confirmSignUpWithCode,
+  resendSignUpCode,
+  signInWithPassword,
+  signUpWithPassword,
+} from './cognitoPassword'
 import { getUserManager, isCognitoConfigured, signOutRedirect } from './cognito'
+import { persistSessionAsOidcUser } from './persistOidcUser'
 
 const AuthContext = createContext(undefined)
 
@@ -119,6 +126,28 @@ export function AuthProvider({ children }) {
 
   const appLoading = sessionLoading || Boolean(user && profileLoading)
 
+  const signInWithPasswordHandler = useCallback(
+    async (email, password) => {
+      const { session } = await signInWithPassword(email, password)
+      const oidcUser = await persistSessionAsOidcUser(session)
+      // storeUser does not raise UserLoaded (unlike signinRedirectCallback)
+      setUser(oidcUser)
+    },
+    [],
+  )
+
+  const signUpHandler = useCallback(async (email, password) => {
+    await signUpWithPassword(email, password)
+  }, [])
+
+  const confirmSignUpHandler = useCallback(async (email, code) => {
+    await confirmSignUpWithCode(email, code)
+  }, [])
+
+  const resendConfirmationCodeHandler = useCallback(async (email) => {
+    await resendSignUpCode(email)
+  }, [])
+
   const value = useMemo(
     () => ({
       user,
@@ -133,6 +162,10 @@ export function AuthProvider({ children }) {
       configured,
       userManager,
       signIn: () => userManager?.signinRedirect(),
+      signInWithPassword: signInWithPasswordHandler,
+      signUp: signUpHandler,
+      confirmSignUp: confirmSignUpHandler,
+      resendConfirmationCode: resendConfirmationCodeHandler,
       signOut: () => signOutRedirect(),
     }),
     [
@@ -146,6 +179,10 @@ export function AuthProvider({ children }) {
       refreshProfile,
       configured,
       userManager,
+      signInWithPasswordHandler,
+      signUpHandler,
+      confirmSignUpHandler,
+      resendConfirmationCodeHandler,
     ],
   )
 

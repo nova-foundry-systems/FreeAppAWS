@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import ProfileDetails from '../components/profile/ProfileDetails'
 import { useAuth } from '../auth/AuthContext'
 import '../App.css'
 
 export default function Profile() {
+  const navigate = useNavigate()
   const { signOut, profile, profileError } = useAuth()
+
+  async function handleSignOut() {
+    navigate('/', { replace: true })
+    await signOut?.()
+  }
 
   if (profileError) {
     return (
@@ -27,7 +33,7 @@ export default function Profile() {
       <ProfileDetails
         firstName={profile.firstName}
         lastName={profile.lastName}
-        onSignOut={() => signOut?.()}
+        onSignOut={handleSignOut}
       />
     </main>
   )

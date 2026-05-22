@@ -12,6 +12,11 @@ export default function ProfileSetup() {
     navigate('/', { replace: true })
   }
 
+  async function handleSignOut() {
+    navigate('/', { replace: true })
+    await signOut?.()
+  }
+
   return (
     <main className="auth-shell">
       <h1 className="auth-title">Set up your profile</h1>
@@ -19,11 +24,9 @@ export default function ProfileSetup() {
       {profileError ? <p className="auth-error">{profileError}</p> : null}
       <ProfileSetupForm user={user} onComplete={handleComplete} />
       <p className="auth-footer">
-        <button type="button" className="auth-link-btn" onClick={() => signOut?.()}>
+        <button type="button" className="auth-link-btn" onClick={handleSignOut}>
           Sign out
         </button>
-        {' · '}
-        <Link to="/">Home</Link>
       </p>
     </main>
   )
