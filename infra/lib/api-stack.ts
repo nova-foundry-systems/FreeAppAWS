@@ -22,7 +22,7 @@ export class FreeAppApiStack extends cdk.Stack {
     constructor(scope: Construct, id: string, props: FreeAppApiStackProps) {
         super(scope, id, props);
 
-        const lambdaRoot = path.join(__dirname, '..', 'lambda', 'api');
+        const lambdaRoot = path.join(__dirname, '..', '..', 'lambda', 'express-api');
 
         const apiHandler = new NodejsFunction(this, 'FreeAppApiHandler', {
             projectRoot: lambdaRoot,
