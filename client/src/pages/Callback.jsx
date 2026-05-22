@@ -14,7 +14,7 @@ export default function Callback() {
     }
 
     completeSignInRedirect()
-      .then(() => navigate('/user', { replace: true }))
+      .then(() => navigate('/profile', { replace: true }))
       .catch((e) => setError(e instanceof Error ? e.message : String(e)))
   }, [configured, navigate])
 

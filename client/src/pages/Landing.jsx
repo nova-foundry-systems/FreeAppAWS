@@ -15,8 +15,8 @@ function Landing() {
       <header className="site-header">
         <nav className="site-nav">
           {!loading && user ? (
-            <Link to="/user" className="site-nav-link">
-              Account
+            <Link to="/profile" className="site-nav-link">
+              Profile
             </Link>
           ) : !loading ? (
             <Link to="/login" className="site-nav-link">

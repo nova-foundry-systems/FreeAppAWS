@@ -14,7 +14,7 @@ export default function Login() {
   }
 
   if (user) {
-    return <Navigate to="/user" replace />
+    return <Navigate to="/profile" replace />
   }
 
   return (
